@@ -102,6 +102,27 @@ const Slider = ({
   );
 };
 
+Slider.propTypes = {
+  initialIndex: PropTypes.number,
+  slides: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object),
+  showArrows: PropTypes.bool,
+  showDots: PropTypes.bool,
+  infinite: PropTypes.bool,
+  autoPlay: PropTypes.bool,
+  duration: PropTypes.number
+};
+
+Slider.defaultProps = {
+  initialIndex: 0,
+  data: null,
+  showArrows: true,
+  showDots: true,
+  infinite: false,
+  autoPlay: true,
+  duration: 3
+};
+
 Slider.LeftArrow = ({ children }) => (
   <SliderConsumer>
     {({ nav }) =>
@@ -151,46 +172,31 @@ Slider.Dots = () => (
   </SliderConsumer>
 );
 
-const Usage = ({ children, data, width, height, ...props }) => {
-  console.log('​Usage -> children', children);
+const BuildSlider = ({ children, data, width, height, ...props }) => (
+  <SliderWrapper height={height} width={width}>
+    <SliderContent isDots={props.showDots}>
+      <Slider slides={data ? buildSlider(data) : children} {...props}>
+        <Slider.LeftArrow><img src={arrowLeft} alt="P" /></Slider.LeftArrow>
+        <Slider.Content />
+        <Slider.RightArrow><img src={arrowRight} alt="N" /></Slider.RightArrow>
+        <Slider.Dots />
+      </Slider>
+    </SliderContent>
+  </SliderWrapper>
+);
 
-  return (
-    <SliderWrapper height={height} width={width}>
-      <SliderContent isDots={props.showDots}>
-        <Slider slides={data ? buildSlider(data) : children} {...props}>
-          <Slider.LeftArrow><img src={arrowLeft} alt="P" /></Slider.LeftArrow>
-          <Slider.Content />
-          <Slider.RightArrow><img src={arrowRight} alt="N" /></Slider.RightArrow>
-          <Slider.Dots />
-        </Slider>
-      </SliderContent>
-    </SliderWrapper>
-  );
-};
-
-Slider.propTypes = {
-  initialIndex: PropTypes.number,
+BuildSlider.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
-  slides: PropTypes.arrayOf(PropTypes.object).isRequired,
   data: PropTypes.arrayOf(PropTypes.object),
-  showArrows: PropTypes.bool,
   showDots: PropTypes.bool,
-  infinite: PropTypes.bool,
-  autoPlay: PropTypes.bool,
-  duration: PropTypes.number
 };
 
-Slider.defaultProps = {
-  initialIndex: 0,
-  width: '640px',
-  height: '480px',
+BuildSlider.defaultProps = {
+  width: '100%',
+  height: '100%',
   data: null,
-  showArrows: true,
   showDots: true,
-  infinite: false,
-  autoPlay: false,
-  duration: 3
 };
 
-export default Usage;
+export default BuildSlider;
