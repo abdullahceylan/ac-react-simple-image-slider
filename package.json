@@ -21,13 +21,18 @@
   "scripts": {
     "start": "react-scripts start",
     "build-examples": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest --watch --no-cache",
+    "test:react": "react-scripts test --env=jsdom",
+    "test:run": "jest --coverage",
     "eject": "react-scripts eject",
     "build": "rimraf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-react-app": "^6.1.0",
+    "babel-plugin-react-element-info": "^1.0.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "jest": "^23.6.0",
     "lodash": "^4.17.11",
     "react": "^16.7.0-alpha.0",
     "react-dom": "^16.7.0-alpha.0",
@@ -41,13 +46,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/(coverage|dist|node_modules|tools)/"
-    ]
-  }
+  ]
 }

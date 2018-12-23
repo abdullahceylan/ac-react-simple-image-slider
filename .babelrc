@@ -1,7 +1,9 @@
 {
-  "presets":[
-    ["react-app", {
-      "absoluteRuntime": false
-    }]
+  "presets": [
+    "env",
+    "react"
+  ],
+  "plugins": [
+    "react-element-info"
   ]
 }
