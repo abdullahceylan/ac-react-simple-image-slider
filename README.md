@@ -16,75 +16,54 @@ or
 yarn install --save ac-react-simple-image-slider
 ```
 
-## Method 1: children node
+## Usage
 
 ```jsx
-import React from 'react'
-import ImageSlider from 'ac-react-simple-image-slider'
-
-const Example = () => (
-  <ImageSlider
-    height="640px"
-    width="480px"
-  >
-    <img key="1" src="https://placeimg.com/640/480/any" alt="Slide 1" />
-    <img key="1" src="https://placeimg.com/640/480/any" alt="Slide 2" />
-    <img key="1" src="https://placeimg.com/640/480/any" alt="Slide 3" />
-  </ImageSlider>
-);
-```
-**Note:** `key` attribute is required and must be **unique**.
-
-## Method 2: JSON data
-
-```jsx
-import React from 'react'
-import ImageSlider from 'ac-react-simple-image-slider'
+import React from 'react';
+import ImageSlider from 'ac-react-simple-image-slider';
 
 const imageData = [
   {
     src: 'https://placeimg.com/640/480/any',
-    title: 'Image 1',
+    title: 'Image 1'
   },
   {
     src: 'https://placeimg.com/640/480/any',
-    title: 'Image 2',
-  },
+    title: 'Image 2'
+  }
 ];
 
 const Example = () => (
-  <ImageSlider
-    height="640px"
-    width="480px"
-    data={imageData}
-  />
+  <ImageSlider height='640px' width='480px' data={imageData} />
 );
 ```
 
 ### Props
 
-Name             | Type       | Default                   | Description
------------------|------------|---------------------------|--------------
-initialIndex        | `number`   | `0`                    | The index of the initial slide image. `0` points to first slide image.
-height        | `string`   | `100%`                    | Custom slider height. e.g.: `640px`
-width        | `string`   | `100%`                    | Custom slider width. e.g.: `480px`
-data        | `arrayOfObject`   | `[]`                    | (optional) Slider images array. If you have provide an images array data, the children data will be ignored.
-showArrows        | `bool`   | `true`                    | Whether the navigation arrows will display or not
-showDots        | `bool`   | `true`                    | Whether the dots will display bottom of the slider or not
-autoPlay        | `bool`   | `true`                    | (optional) Whether the slideshow should start automatically
-duration        | `number`   | `3`                    | (optional) How long wait (seconds) before the next transition starts. It also uses by animation duration
-infinite        | `bool`   | `false`            | (optional) Whether the transition should loop throughout
-leftArrowComponent        | `string`   | `<`                    | Custom left arrow
-rightArrowComponent       | `string`   | `>`                    | Custom right arrow
+| Name                | Type            | Default | Description                                                                                              |
+| ------------------- | --------------- | ------- | -------------------------------------------------------------------------------------------------------- |
+| initialIndex        | `number`        | `0`     | The index of the initial slide image. `0` points to first slide image.                                   |
+| height              | `string`        | `100%`  | Custom slider height. e.g.: `640px`                                                                      |
+| width               | `string`        | `100%`  | Custom slider width. e.g.: `480px`                                                                       |
+| data                | `arrayOfObject` | `[]`    | (required) Slider images array.                                                                          |
+|  ->   src             | `string` | `-`    | (required) Slider item image URL.                                                                 |
+|  ->   title             | `string` | `-`    | (required) Slider item title. This also be used for alternative image text.                                                                          |
+| showArrows          | `bool`          | `true`  | Whether the navigation arrows will display or not                                                        |
+| showDots            | `bool`          | `true`  | Whether the dots will display bottom of the slider or not                                                |
+| autoPlay            | `bool`          | `true`  | (optional) Whether the slideshow should start automatically                                              |
+| duration            | `number`        | `3`     | (optional) How long wait (seconds) before the next transition starts. It also uses by animation duration |
+| infinite            | `bool`          | `false` | (optional) Whether the transition should loop throughout                                                                                       |
 
 ## Todo
-* [x] Tests 
-* [ ] Add following props:
 
+- [x] Tests
+- [ ] Add following props:
 
-Name             | Type       | Default                   | Description
------------------|------------|---------------------------|--------------
-dotComponent        | `node`   | `null`                    | Custom component for the dots
+| Name         | Type   | Default | Description                   |
+| ------------ | ------ | ------- | ----------------------------- |
+| dotComponent | `node` | `null`  | Custom component for the dots |                                       |
+| leftArrowComponent  | `string`        | `<`     | Custom left arrow                                                                                        |
+| rightArrowComponent | `string`        | `>`     | Custom right arrow    
 
 ## License
 
