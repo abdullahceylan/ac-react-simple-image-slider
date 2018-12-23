@@ -4,6 +4,7 @@
     "react"
   ],
   "plugins": [
-    "react-element-info"
+    "react-element-info",
+    "transform-object-rest-spread"
   ]
 }
