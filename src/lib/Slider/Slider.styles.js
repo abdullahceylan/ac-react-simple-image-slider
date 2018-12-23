@@ -27,13 +27,22 @@ export const fadeIn = keyframes`
 export const ElementWrapper = styled.div`
   height: 100%;
   width: 100%;
+`;
 
-  & > img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    animation: ${fadeIn} 3s;
-  }
+export const SlideImage = styled.img`
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  display: none;
+  ${ifProp(
+    { isActive: true },
+    css`
+      display: block;
+      opacity: 1;
+      animation: ${fadeIn} 3s;
+    `
+  )}
 `;
 
 export const SliderFooter = styled.div`
@@ -52,6 +61,8 @@ export const Arrow = styled.div`
   margin: auto;
   height: 30px;
   width: 30px;
+  color: #fff;
+  border: 1px solid #fff;
   border-radius: 30px;
   background-color: rgba(0, 0, 0, 0.4);
   cursor: pointer;

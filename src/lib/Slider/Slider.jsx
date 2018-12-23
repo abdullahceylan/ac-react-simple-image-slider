@@ -2,17 +2,21 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import range from 'lodash/range';
 // Assets
-import arrowLeft from './images/left-arrow.png';
-import arrowRight from './images/right-arrow.png';
+// import arrowLeft from './images/left-arrow.png';
+// import arrowRight from './images/right-arrow.png';
 import {
   SliderWrapper,
   SliderContent,
   ArrowLeft,
   ArrowRight,
   ElementWrapper,
+  SlideImage,
   SliderFooter,
   Dot,
 } from './Slider.styles';
+
+const arrowLeft = '<';
+const arrowRight = '>'
 
 const SliderContext = React.createContext();
 
@@ -29,9 +33,9 @@ const SliderConsumer = props => (
   </SliderContext.Consumer>
 );
 
-const buildSlider = data => {
+const buildSlider = (data, currentIndex) => {
   if (Array.isArray(data) && data.length > 0) {
-    return data.map(slide => <img key={slide.src} src={slide.src} alt={slide.title} />);
+    return data.map((slide, index) => <SlideImage className="slideImage" isActive={currentIndex === index} key={index} src={slide.src} alt={slide.title} />);
   }
   return null;
 };
@@ -51,7 +55,7 @@ const Slider = ({
 
   // Check if there is any slide
   if (!slideCount) {
-    return null;
+    return <div>No slides</div>;
   }
 
   // Declare a new state variable, which we'll call "currentIndex"
@@ -104,13 +108,13 @@ const Slider = ({
 
 Slider.propTypes = {
   initialIndex: PropTypes.number,
-  slides: PropTypes.arrayOf(PropTypes.object).isRequired,
+  slides: PropTypes.arrayOf(PropTypes.object),
   data: PropTypes.arrayOf(PropTypes.object),
   showArrows: PropTypes.bool,
   showDots: PropTypes.bool,
   infinite: PropTypes.bool,
   autoPlay: PropTypes.bool,
-  duration: PropTypes.number
+  duration: PropTypes.number,
 };
 
 Slider.defaultProps = {
@@ -120,7 +124,7 @@ Slider.defaultProps = {
   showDots: true,
   infinite: false,
   autoPlay: true,
-  duration: 3
+  duration: 3,
 };
 
 Slider.LeftArrow = ({ children }) => (
@@ -147,7 +151,7 @@ Slider.Content = () => (
   <SliderConsumer>
     {({ currentIndex, autoPlay, duration, slideCount, slides }) => {
       return slideCount ? (
-        <ElementWrapper isAutoPlay={autoPlay} duration={(duration)}>{slides[currentIndex]}</ElementWrapper>
+        <ElementWrapper isAutoPlay={autoPlay} duration={(duration)}>{buildSlider(slides, currentIndex)}</ElementWrapper>
       ) : null
     }
     }
@@ -172,13 +176,16 @@ Slider.Dots = () => (
   </SliderConsumer>
 );
 
-const BuildSlider = ({ children, data, width, height, ...props }) => (
+const BuildSlider = ({
+  children, data, width, height,
+  leftArrowComponent, rightArrowComponent, ...props
+}) => (
   <SliderWrapper height={height} width={width}>
     <SliderContent isDots={props.showDots}>
-      <Slider slides={data ? buildSlider(data) : children} {...props}>
-        <Slider.LeftArrow><img src={arrowLeft} alt="P" /></Slider.LeftArrow>
+      <Slider slides={data} {...props}>
+        <Slider.LeftArrow>{leftArrowComponent}</Slider.LeftArrow>
         <Slider.Content />
-        <Slider.RightArrow><img src={arrowRight} alt="N" /></Slider.RightArrow>
+        <Slider.RightArrow>{rightArrowComponent}</Slider.RightArrow>
         <Slider.Dots />
       </Slider>
     </SliderContent>
@@ -190,6 +197,14 @@ BuildSlider.propTypes = {
   height: PropTypes.string,
   data: PropTypes.arrayOf(PropTypes.object),
   showDots: PropTypes.bool,
+  leftArrowComponent: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]),
+  rightArrowComponent: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]),
 };
 
 BuildSlider.defaultProps = {
@@ -197,6 +212,8 @@ BuildSlider.defaultProps = {
   height: '100%',
   data: null,
   showDots: true,
+  leftArrowComponent: arrowLeft,
+  rightArrowComponent: arrowRight,
 };
 
 export default BuildSlider;
