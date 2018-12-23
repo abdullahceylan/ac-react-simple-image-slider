@@ -74,16 +74,16 @@ showDots        | `bool`   | `true`                    | Whether the dots will d
 autoPlay        | `bool`   | `true`                    | (optional) Whether the slideshow should start automatically
 duration        | `number`   | `3`                    | (optional) How long wait (seconds) before the next transition starts. It also uses by animation duration
 infinite        | `bool`   | `false`            | (optional) Whether the transition should loop throughout
+leftArrowComponent        | `string`   | `<`                    | Custom left arrow
+rightArrowComponent       | `string`   | `>`                    | Custom right arrow
 
 ## Todo
-* [ ] Tests 
+* [x] Tests 
 * [ ] Add following props:
 
 
 Name             | Type       | Default                   | Description
 -----------------|------------|---------------------------|--------------
-leftArrowComponent        | `node`   | `null`                    | Custom component for the left arrow
-rightArrowComponent       | `node`   | `null`                    | Custom component for the right arrow
 dotComponent        | `node`   | `null`                    | Custom component for the dots
 
 ## License
