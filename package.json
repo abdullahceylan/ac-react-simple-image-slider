@@ -1,6 +1,6 @@
 {
   "name": "ac-react-simple-image-slider",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple image slider built with React, styled-components and hooks",
   "author": "abdullahceylan",
   "license": "MIT",
@@ -17,6 +17,17 @@
   "module": "dist/index.js",
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "react",
+    "styled-components",
+    "hooks",
+    "carousel",
+    "slider",
+    "slideshow",
+    "image-gallery",
+    "gallery",
+    "animation"
   ],
   "scripts": {
     "start": "npm run test:run; react-scripts start",

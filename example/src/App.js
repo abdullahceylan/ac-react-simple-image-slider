@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from 'ac-react-simple-image-slider-test';
+import Slider from 'ac-react-simple-image-slider';
 
 const imageData = [
   {

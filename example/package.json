@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "ac-react-simple-image-slider-test": "^0.0.1",
+    "ac-react-simple-image-slider": "^0.0.2",
     "prop-types": "^15.6.2",
     "react": "16.7.0-alpha.2",
     "react-dom": "16.7.0-alpha.2",
