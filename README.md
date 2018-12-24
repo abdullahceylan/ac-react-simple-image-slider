@@ -6,6 +6,8 @@
 
 ## Install
 
+> ⚠️ Warning: hooks are not part of a stable React release yet, so use this library only for experiments
+
 ```bash
 npm install --save ac-react-simple-image-slider
 ```
