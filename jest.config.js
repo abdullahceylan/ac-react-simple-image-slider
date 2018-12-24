@@ -3,6 +3,7 @@ module.exports = {
   collectCoverageFrom: [
     '**/src/**/*.{js,jsx}',
     '!**/__tests__/**',
+    '!**/example/**',
     '!**/node_modules/**'
   ],
   coverageThreshold: {
