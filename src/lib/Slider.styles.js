@@ -85,7 +85,7 @@ export const ArrowRight = styled(Arrow)`
 `;
 
 export const Dot = styled.div`
-  height: 5px;
+  height: 9px;
   width: 5px;
   border-radius: 100%;
   background-color: gray;
@@ -95,6 +95,7 @@ export const Dot = styled.div`
   ${ifProp(
     'selected',
     css`
+      height: 5px;
       opacity: 1;
     `
   )}

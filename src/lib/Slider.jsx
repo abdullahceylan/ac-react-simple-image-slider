@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import range from 'lodash/range';
-// Assets
-// import arrowLeft from './images/left-arrow.png';
-// import arrowRight from './images/right-arrow.png';
 import {
   SliderWrapper,
   SliderContent,
@@ -20,18 +17,15 @@ const arrowRight = '>'
 
 const SliderContext = React.createContext();
 
-const SliderConsumer = props => (
-  <SliderContext.Consumer {...props}>
-    {context => {
-      if (!context) {
-        throw new Error(
-          `Slider compound components cannot be rendered outside the Slider component`
-        );
-      }
-      return props.children(context);
-    }}
-  </SliderContext.Consumer>
-);
+const useSliderContext = () => {
+  const context = useContext(SliderContext);
+  if (!context) {
+    throw new Error(
+      `Slider compound components cannot be rendered outside the Slider component`
+    );
+  }
+  return context;
+}
 
 const buildSlider = (data, currentIndex) => {
   if (Array.isArray(data) && data.length > 0) {
@@ -127,54 +121,46 @@ Slider.defaultProps = {
   duration: 3,
 };
 
-Slider.LeftArrow = ({ children }) => (
-  <SliderConsumer>
-    {({ nav }) =>
-      nav.showArrows ? (
-        <ArrowLeft onClick={nav.onPrev}>{children}</ArrowLeft>
-      ) : null
-    }
-  </SliderConsumer>
-);
+const LeftArrow = ({ children }) => {
+  const { nav } = useSliderContext();
+  return nav.showArrows ? (
+    <ArrowLeft onClick={nav.onPrev}>{children}</ArrowLeft>
+  ) : null
+};
+Slider.LeftArrow = LeftArrow;
 
-Slider.RightArrow = ({ children }) => (
-  <SliderConsumer>
-    {({ nav }) =>
-      nav.showArrows ? (
-        <ArrowRight onClick={nav.onNext}>{children}</ArrowRight>
-      ) : null
-    }
-  </SliderConsumer>
-);
+const RightArrow = ({ children }) => {
+  const { nav } = useSliderContext();
+  return nav.showArrows ? (
+    <ArrowRight onClick={nav.onNext}>{children}</ArrowRight>
+  ) : null
+};
+Slider.RightArrow = RightArrow;
 
-Slider.Content = () => (
-  <SliderConsumer>
-    {({ currentIndex, autoPlay, duration, slideCount, slides }) => {
-      return slideCount ? (
-        <ElementWrapper isAutoPlay={autoPlay} duration={(duration)}>{buildSlider(slides, currentIndex)}</ElementWrapper>
-      ) : null
-    }
-    }
-  </SliderConsumer>
-);
 
-Slider.Dots = () => (
-  <SliderConsumer>
-    {({ nav, slideCount, currentIndex }) =>
-      nav.showDots ? (
-        <SliderFooter>
-          {range(slideCount).map(item => (
-            <Dot
-              key={item}
-              selected={item === currentIndex}
-              onClick={() => nav.setIndex(item)}
-            />
-          ))}
-        </SliderFooter>
-      ) : null
-    }
-  </SliderConsumer>
-);
+const Content = () => {
+  const { currentIndex, autoPlay, duration, slideCount, slides } = useSliderContext();
+  return slideCount ? (
+    <ElementWrapper isAutoPlay={autoPlay} duration={(duration)}>{buildSlider(slides, currentIndex)}</ElementWrapper>
+  ) : null
+}
+Slider.Content = Content;
+
+const Dots = () => {
+  const { nav, slideCount, currentIndex } = useSliderContext();
+  return nav.showDots ? (
+    <SliderFooter>
+      {range(slideCount).map(item => (
+        <Dot
+          key={item}
+          selected={item === currentIndex}
+          onClick={() => nav.setIndex(item)}
+        />
+      ))}
+    </SliderFooter>
+  ) : null
+}
+Slider.Dots = Dots;
 
 const BuildSlider = ({
   children, data, width, height,
