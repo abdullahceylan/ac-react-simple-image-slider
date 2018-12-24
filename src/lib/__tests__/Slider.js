@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Slider from '../Slider';
+import Slider from '../BuildSlider';
 
 const imageData = [
   {

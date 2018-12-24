@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import range from 'lodash/range';
 import {
-  SliderWrapper,
-  SliderContent,
   ArrowLeft,
   ArrowRight,
   ElementWrapper,
@@ -11,9 +9,6 @@ import {
   SliderFooter,
   Dot,
 } from './Slider.styles';
-
-const arrowLeft = '<';
-const arrowRight = '>'
 
 const SliderContext = React.createContext();
 
@@ -27,7 +22,7 @@ const useSliderContext = () => {
   return context;
 }
 
-const buildSlider = (data, currentIndex) => {
+const buildImages = (data, currentIndex) => {
   if (Array.isArray(data) && data.length > 0) {
     return data.map((slide, index) => <SlideImage className="slideImage" isActive={currentIndex === index} key={index} src={slide.src} alt={slide.title} />);
   }
@@ -100,6 +95,42 @@ const Slider = ({
   );
 };
 
+Slider.LeftArrow = ({ children }) => {
+  const { nav } = useSliderContext();
+  return nav.showArrows ? (
+    <ArrowLeft onClick={nav.onPrev}>{children}</ArrowLeft>
+  ) : null
+};
+
+Slider.RightArrow = ({ children }) => {
+  const { nav } = useSliderContext();
+  return nav.showArrows ? (
+    <ArrowRight onClick={nav.onNext}>{children}</ArrowRight>
+  ) : null
+};
+
+Slider.Content = () => {
+  const { currentIndex, autoPlay, duration, slideCount, slides } = useSliderContext();
+  return slideCount ? (
+    <ElementWrapper isAutoPlay={autoPlay} duration={(duration)}>{buildImages(slides, currentIndex)}</ElementWrapper>
+  ) : null
+}
+
+Slider.Dots = () => {
+  const { nav, slideCount, currentIndex } = useSliderContext();
+  return nav.showDots ? (
+    <SliderFooter>
+      {range(slideCount).map(item => (
+        <Dot
+          key={item}
+          selected={item === currentIndex}
+          onClick={() => nav.setIndex(item)}
+        />
+      ))}
+    </SliderFooter>
+  ) : null
+}
+
 Slider.propTypes = {
   initialIndex: PropTypes.number,
   slides: PropTypes.arrayOf(PropTypes.object),
@@ -121,85 +152,4 @@ Slider.defaultProps = {
   duration: 3,
 };
 
-const LeftArrow = ({ children }) => {
-  const { nav } = useSliderContext();
-  return nav.showArrows ? (
-    <ArrowLeft onClick={nav.onPrev}>{children}</ArrowLeft>
-  ) : null
-};
-Slider.LeftArrow = LeftArrow;
-
-const RightArrow = ({ children }) => {
-  const { nav } = useSliderContext();
-  return nav.showArrows ? (
-    <ArrowRight onClick={nav.onNext}>{children}</ArrowRight>
-  ) : null
-};
-Slider.RightArrow = RightArrow;
-
-
-const Content = () => {
-  const { currentIndex, autoPlay, duration, slideCount, slides } = useSliderContext();
-  return slideCount ? (
-    <ElementWrapper isAutoPlay={autoPlay} duration={(duration)}>{buildSlider(slides, currentIndex)}</ElementWrapper>
-  ) : null
-}
-Slider.Content = Content;
-
-const Dots = () => {
-  const { nav, slideCount, currentIndex } = useSliderContext();
-  return nav.showDots ? (
-    <SliderFooter>
-      {range(slideCount).map(item => (
-        <Dot
-          key={item}
-          selected={item === currentIndex}
-          onClick={() => nav.setIndex(item)}
-        />
-      ))}
-    </SliderFooter>
-  ) : null
-}
-Slider.Dots = Dots;
-
-const BuildSlider = ({
-  children, data, width, height,
-  leftArrowComponent, rightArrowComponent, ...props
-}) => (
-  <SliderWrapper height={height} width={width}>
-    <SliderContent isDots={props.showDots}>
-      <Slider slides={data} {...props}>
-        <Slider.LeftArrow>{leftArrowComponent}</Slider.LeftArrow>
-        <Slider.Content />
-        <Slider.RightArrow>{rightArrowComponent}</Slider.RightArrow>
-        <Slider.Dots />
-      </Slider>
-    </SliderContent>
-  </SliderWrapper>
-);
-
-BuildSlider.propTypes = {
-  width: PropTypes.string,
-  height: PropTypes.string,
-  data: PropTypes.arrayOf(PropTypes.object),
-  showDots: PropTypes.bool,
-  leftArrowComponent: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-  ]),
-  rightArrowComponent: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-  ]),
-};
-
-BuildSlider.defaultProps = {
-  width: '100%',
-  height: '100%',
-  data: null,
-  showDots: true,
-  leftArrowComponent: arrowLeft,
-  rightArrowComponent: arrowRight,
-};
-
-export default BuildSlider;
+export default Slider;
