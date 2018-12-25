@@ -15,7 +15,7 @@ npm install --save ac-react-simple-image-slider
 or
 
 ```bash
-yarn install --save ac-react-simple-image-slider
+yarn add ac-react-simple-image-slider
 ```
 
 ## Usage
