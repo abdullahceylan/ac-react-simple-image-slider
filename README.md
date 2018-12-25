@@ -4,9 +4,11 @@
 
 [![NPM](https://img.shields.io/npm/v/ac-react-simple-image-slider.svg)](https://www.npmjs.com/package/ac-react-simple-image-slider) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## Install
 
 > ⚠️ Warning: hooks are not part of a stable React release yet, so use this library only for experiments
+
+
+## Install
 
 ```bash
 npm install --save ac-react-simple-image-slider
@@ -19,6 +21,10 @@ yarn add ac-react-simple-image-slider
 ```
 
 ## Usage
+
+![Example usage](https://github.com/abdullahceylan/ac-react-simple-image-slider/blob/master/example.png)
+<details>
+<summary>View raw code</summary>
 
 ```jsx
 import React from 'react';
@@ -39,6 +45,8 @@ const Example = () => (
   <ImageSlider height='640px' width='480px' data={imageData} />
 );
 ```
+
+</details>
 
 ### Props
 
