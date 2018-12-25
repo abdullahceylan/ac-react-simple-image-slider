@@ -19,7 +19,7 @@ yarn add ac-react-simple-image-slider
 
 ## Usage
 
-![Example usage](https://github.com/abdullahceylan/ac-react-simple-image-slider/blob/master/example.png)
+![Example usage](https://raw.githubusercontent.com/abdullahceylan/ac-react-simple-image-slider/master/example.png)
 <details>
 <summary>View raw code</summary>
 
