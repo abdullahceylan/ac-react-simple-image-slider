@@ -1,6 +1,6 @@
 {
   "name": "ac-react-simple-image-slider",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A simple image slider built with React, styled-components and hooks",
   "author": "abdullahceylan",
   "license": "MIT",
