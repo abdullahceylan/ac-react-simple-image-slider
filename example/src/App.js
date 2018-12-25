@@ -1,17 +1,20 @@
 import React from 'react';
 import Slider from 'ac-react-simple-image-slider';
 
+const imageRoot =
+  'https://raw.githubusercontent.com/abdullahceylan/ac-react-simple-image-slider/master/example/public';
+
 const imageData = [
   {
-    src: '/assets/slide1.jpg',
+    src: `${imageRoot}/assets/slide1.jpg`,
     title: 'Slide 1'
   },
   {
-    src: '/assets/slide2.jpg',
+    src: `${imageRoot}/assets/slide2.jpg`,
     title: 'Slide 2'
   },
   {
-    src: '/assets/slide3.jpg',
+    src: `${imageRoot}/assets/slide3.jpg`,
     title: 'Slide 3'
   }
 ];
