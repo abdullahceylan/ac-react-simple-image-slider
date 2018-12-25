@@ -5,9 +5,6 @@
 [![NPM](https://img.shields.io/npm/v/ac-react-simple-image-slider.svg)](https://www.npmjs.com/package/ac-react-simple-image-slider) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 
-> ⚠️ Warning: hooks are not part of a stable React release yet, so use this library only for experiments
-
-
 ## Install
 
 ```bash
