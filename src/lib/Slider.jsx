@@ -22,9 +22,9 @@ const useSliderContext = () => {
   return context;
 }
 
-const buildImages = (data, currentIndex) => {
+const buildImages = (data, currentIndex, itemStyle) => {
   if (Array.isArray(data) && data.length > 0) {
-    return data.map((slide, index) => <SlideImage className="slideImage" isActive={currentIndex === index} key={index} src={slide.src} alt={slide.title} />);
+    return data.map((slide, index) => <SlideImage style={itemStyle} className="slideImage" isActive={currentIndex === index} key={index} src={slide.src} alt={slide.title} />);
   }
   return null;
 };
@@ -37,6 +37,8 @@ const Slider = ({
   duration,
   showArrows,
   showDots,
+  elementWrapperStyles,
+  itemStyles,
   ...rest
 }) => {
   // Declare a new variable to count slides
@@ -81,13 +83,18 @@ const Slider = ({
         slideCount,
         slides,
         autoPlay,
+        duration,
         nav: {
           showDots,
           showArrows,
           onNext: nextSlide,
           onPrev: prevSlide,
           setIndex
-        }
+        },
+        styles: {
+          wrapper: elementWrapperStyles,
+          item: itemStyles,
+        },
       }}
     >
       {rest.children}
@@ -110,9 +117,9 @@ Slider.RightArrow = ({ children }) => {
 };
 
 Slider.Content = () => {
-  const { currentIndex, autoPlay, duration, slideCount, slides } = useSliderContext();
+  const { currentIndex, autoPlay, duration, slideCount, slides, styles } = useSliderContext();
   return slideCount ? (
-    <ElementWrapper isAutoPlay={autoPlay} duration={(duration)}>{buildImages(slides, currentIndex)}</ElementWrapper>
+    <ElementWrapper style={styles.wrapper} isAutoPlay={autoPlay} duration={(duration)}>{buildImages(slides, currentIndex, styles.item)}</ElementWrapper>
   ) : null
 }
 
@@ -140,6 +147,12 @@ Slider.propTypes = {
   infinite: PropTypes.bool,
   autoPlay: PropTypes.bool,
   duration: PropTypes.number,
+  elementWrapperStyles: PropTypes.oneOfType([
+    PropTypes.object,
+  ]),
+  itemStyles: PropTypes.oneOfType([
+    PropTypes.object,
+  ])
 };
 
 Slider.defaultProps = {

@@ -31,6 +31,7 @@ export const ElementWrapper = styled.div`
 
 export const SlideImage = styled.img`
   object-fit: cover;
+  object-position: top;
   width: 100%;
   height: 100%;
   opacity: 0;

@@ -60,6 +60,8 @@ const Example = () => (
 | autoPlay            | `bool`          | `true`  | (optional) Whether the slideshow should start automatically                                              |
 | duration            | `number`        | `3`     | (optional) How long wait (seconds) before the next transition starts. It also uses by animation duration |
 | infinite            | `bool`          | `false` | (optional) Whether the transition should loop throughout                                                                                       |
+| elementWrapperStyles            | `object`          | `null` | (optional) Slide image wrapper styles                                                                                       |
+| itemStyles            | `object`          | `null` | (optional) Slide image style                                                                                       |
 
 ## Todo
 
