@@ -1,7 +1,7 @@
 {
   "name": "ac-react-simple-image-slider",
-  "version": "0.0.7",
-  "description": "A simple image slider built with React, styled-components and hooks",
+  "version": "0.0.8",
+  "description": "A simple image slider built with React, emotion and hooks",
   "author": "abdullahceylan",
   "license": "MIT",
   "repository": {
@@ -20,7 +20,7 @@
   ],
   "keywords": [
     "react",
-    "styled-components",
+    "emotion",
     "hooks",
     "carousel",
     "slider",
@@ -41,11 +41,11 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "16.7.0-alpha.2 - next"
+    "react": "16.8.4"
   },
   "dependencies": {
-    "eslint": "5.6.0",
-    "styled-components": "^4.1.3",
+    "@emotion/core": "^10.0.7",
+    "@emotion/styled": "^10.0.7",
     "styled-tools": "^1.6.0"
   },
   "devDependencies": {
@@ -66,8 +66,8 @@
     "jest": "^23.6.0",
     "lint-staged": "^8.0.4",
     "lodash": "^4.17.11",
-    "react": "16.7.0-alpha.2 - next",
-    "react-dom": "16.7.0-alpha.2 - next",
+    "react": "16.8.4",
+    "react-dom": "16.8.4",
     "react-scripts": "^2.1.2",
     "rimraf": "^2.6.2"
   },
