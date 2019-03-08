@@ -1,6 +1,6 @@
 # ac-react-simple-image-slider
 
-> A simple image slider built with React, styled-components and hooks
+> A simple image slider built with React, emotion and hooks
 
 [![NPM](https://img.shields.io/npm/v/ac-react-simple-image-slider.svg)](https://www.npmjs.com/package/ac-react-simple-image-slider) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
