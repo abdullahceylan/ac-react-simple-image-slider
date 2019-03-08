@@ -1,4 +1,5 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled from '@emotion/styled';
+import { css, keyframes } from '@emotion/core';
 import { ifProp, prop } from 'styled-tools';
 
 export const SliderWrapper = styled.div`
